@@ -8,4 +8,5 @@ data class User (
     var state: String = "",
     val phone: String = "",
     val photoUrl: String = "",
+    val post: String = "",
 )
