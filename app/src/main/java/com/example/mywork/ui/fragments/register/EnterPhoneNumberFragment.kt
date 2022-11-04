@@ -1,15 +1,13 @@
-package com.example.mywork.ui.fragments
+package com.example.mywork.ui.fragments.register
 
 import androidx.fragment.app.Fragment
 import com.example.mywork.MainActivity
 import com.example.mywork.R
-import com.example.mywork.activities.RegisterActivity
 import com.example.mywork.utilits.AUTH
 import com.example.mywork.utilits.replaceActivity
 import com.example.mywork.utilits.replaceFragment
 import com.example.mywork.utilits.showToast
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
