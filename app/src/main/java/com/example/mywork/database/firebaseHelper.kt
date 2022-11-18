@@ -29,7 +29,6 @@ const val CHILD_TEXT = "text"
 const val CHILD_TYPE = "type"
 const val CHILD_FROM = "from"
 const val CHILD_TIMESTAMP = "timeStamp"
-
 const val CHILD_POST = "post"
 
 fun initFirebase() {
@@ -64,9 +63,10 @@ fun sendMessage(message: String, receivingUserID: String, typeText: String, func
     mapMessage[CHILD_FROM] = CURRENT_UID
     mapMessage[CHILD_TYPE] = typeText
     mapMessage[CHILD_TEXT] = message
+    mapMessage[CHILD_ID] = messageKey.toString()
     mapMessage[CHILD_TIMESTAMP] = ServerValue.TIMESTAMP
 
-    val mapDialog = hashMapOf<String,Any>()
+    val mapDialog = hashMapOf<String, Any>()
     mapDialog["$refDialogUser/$messageKey"] = mapMessage
     mapDialog["$refDialogReceivingUser/$messageKey"] = mapMessage
 
@@ -75,5 +75,60 @@ fun sendMessage(message: String, receivingUserID: String, typeText: String, func
         .addOnSuccessListener { function() }
         .addOnFailureListener { showToast(it.message.toString()) }
 
+}
+
+fun updateCurrentUsername(newUserName: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME)
+        .setValue(newUserName)
+        .addOnCompleteListener {
+            if (it.isSuccessful) {
+                //showToast("Данные обнавлены")
+                deleteOldUsername(newUserName)
+            } else {
+                showToast(it.exception?.message.toString())
+            }
+        }
+}
+
+private fun deleteOldUsername(newUserName: String) {
+    REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USER.username).removeValue()
+        .addOnSuccessListener {
+            showToast("Данные обнавлены")
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+            USER.username = newUserName
+
+        }.addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun setBioToDataBase(newBio: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_BIO)
+        .setValue(newBio)
+        .addOnSuccessListener {
+            showToast("Данные обнавлены")
+            USER.bio = newBio
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+        }.addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun setNameToDatabase(fullname: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_FULLNAME)
+        .setValue(fullname)
+        .addOnSuccessListener {
+            showToast("данные обнавлены")
+            USER.fullname = fullname
+            APP_ACTIVITY.appDrawer.updateHeader()
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+        }.addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun setPostToDatabase(post: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_POST)
+        .setValue(post)
+        .addOnSuccessListener {
+            showToast("данные обнавлены")
+            USER.post = post
+            //APP_ACTIVITY.appDrawer.updateHeader()
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+        }.addOnFailureListener { showToast(it.message.toString()) }
 }
 

@@ -13,7 +13,7 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
 
     override fun onStart() {
         super.onStart()
-        (activity as RegisterActivity).title = phoneNumber
+        APP_ACTIVITY.title = phoneNumber
         register_input_code.addTextChangedListener(AppTextWatcher {
             val string = register_input_code.text.toString()
             if (string.length == 6) {
@@ -32,19 +32,27 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
                 val dateMap = mutableMapOf<String, Any>()
                 dateMap[CHILD_ID] = uid
                 dateMap[CHILD_PHONE] = phoneNumber
-                dateMap[CHILD_USERNAME] = uid
 
 
+                REF_DATABASE_ROOT.child(NODE_USERS).child(uid)
+                    .addListenerForSingleValueEvent(AppValueEventListener{
 
+                        //Если в нашей ноде нет username то
+                        if (!it.hasChild(NODE_USERNAMES)){
+                            dateMap[CHILD_USERNAME] = uid
+                        }
 
-                REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
-                    .addOnFailureListener { showToast(it.message.toString()) }
-                    .addOnSuccessListener {
-                        showToast("welcome")
-                        (activity as RegisterActivity).replaceActivity(MainActivity())
-                        REF_DATABASE_ROOT.child(NODE_PHONES).child(phoneNumber).setValue(uid)
+                        REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
                             .addOnFailureListener { showToast(it.message.toString()) }
-                    }
+                            .addOnSuccessListener {
+                                showToast("welcome")
+                                restartActivity()
+                                REF_DATABASE_ROOT.child(NODE_PHONES).child(phoneNumber).setValue(uid)
+                                    .addOnFailureListener { showToast(it.message.toString()) }
+                            }
+                    })
+
+
 
 
             } else showToast(task.exception?.message.toString())

@@ -1,13 +1,7 @@
 package com.example.mywork.ui.fragments
 
-import android.content.Intent
-import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
-import com.example.mywork.MainActivity
 import com.example.mywork.R
-import com.example.mywork.activities.RegisterActivity
-import com.example.mywork.databinding.FragmentSettingsBinding
 import com.example.mywork.utilits.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
@@ -28,6 +22,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_phone_number.text = USER.phone
         settings_status.text = USER.state
         settings_username.text = USER.username
+        settings_post.text = USER.post
         settings_btn_change_username.setOnClickListener{ replaceFragment(ChangeUsernameFragment()) }
         settings_btn_change_bio.setOnClickListener{ replaceFragment(ChangeBioFragment()) }
     }
@@ -43,12 +38,14 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             R.id.settings_menu_exit -> {
                 AppStates.updateState(AppStates.OFFLINE)
                 AUTH.signOut()
-                APP_ACTIVITY.replaceActivity(RegisterActivity())
+                restartActivity()
             }
             R.id.settings_menu_name -> replaceFragment(ChangeNameFragment())
         }
         return true
     }
+
+
 
 
 }

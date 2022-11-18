@@ -7,27 +7,91 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ChangeNameFragment">
 
-    <EditText
-        android:id="@+id/settings_input_name"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_change_name_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/horizontal_margin"
-        android:inputType="text"
-        android:hint="Name"
+        android:layout_gravity="center"
+        android:elevation="20dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="@dimen/horizontal_margin"
+        android:layout_margin="@dimen/vertical_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your name"
+                android:textColor="@color/purple_200"
+                android:textSize="@dimen/normal_text"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="4dp"/>
+            <EditText
+                android:id="@+id/settings_input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/horizontal_margin"
+                android:inputType="text"
+                android:hint="Name" />
 
-    <EditText
-        android:id="@+id/settings_input_surname"
+            <EditText
+                android:id="@+id/settings_input_surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/horizontal_margin"
+                android:hint="Surname"
+                android:inputType="text" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/horizontal_margin"
-        android:hint="Surname"
-        android:inputType="text"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/vertical_margin"
+        android:elevation="20dp"
+        app:cardCornerRadius="@dimen/horizontal_margin"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_input_name" />
+        app:layout_constraintTop_toBottomOf="@+id/card_change_name_setting">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="Enter your post"
+                android:textColor="@color/purple_200"
+                android:textSize="@dimen/normal_text" />
+
+            <EditText
+                android:id="@+id/settings_input_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/horizontal_margin"
+                android:hint="Post"
+                android:textColor="@color/black"
+                android:inputType="text" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

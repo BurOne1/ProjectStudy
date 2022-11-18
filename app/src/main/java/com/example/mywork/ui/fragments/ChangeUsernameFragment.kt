@@ -36,35 +36,13 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
         REF_DATABASE_ROOT.child(NODE_USERNAMES).child(newUsername).setValue(CURRENT_UID)
             .addOnCompleteListener{
                 if (it.isSuccessful){
-                    updateCurrentUsername()
+                    updateCurrentUsername(newUsername)
                 }
             }
     }
 
-    private fun updateCurrentUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME)
-            .setValue(newUsername)
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    //showToast("Данные обнавлены")
-                    deleteOldUsername()
-                } else {
-                    showToast(it.exception?.message.toString())
-                }
-            }
-    }
 
-    private fun deleteOldUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USER.username).removeValue()
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    showToast("Данные обнавлены")
-                    fragmentManager?.popBackStack()
-                    USER.username = newUsername
-                } else {
-                    showToast(it.exception?.message.toString())
-                }
-            }
-    }
+
+
 
 }

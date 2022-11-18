@@ -1,8 +1,6 @@
 package com.example.mywork.ui.objects
 
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.mywork.R
 import com.example.mywork.ui.fragments.ContactsFragment
@@ -18,8 +16,6 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
-import com.mikepenz.materialdrawer.util.DrawerImageLoader
-import java.text.FieldPosition
 
 class AppDrawer (){
 
@@ -108,8 +104,8 @@ class AppDrawer (){
 
     private fun clickToItem(position: Int){
         when(position){
-            3 -> APP_ACTIVITY.replaceFragment(ContactsFragment())
-            5 -> APP_ACTIVITY.replaceFragment(SettingsFragment())
+            3 -> replaceFragment(ContactsFragment())
+            5 -> replaceFragment(SettingsFragment())
         }
     }
 
@@ -134,9 +130,4 @@ class AppDrawer (){
 
         headerResult.updateProfile(currentProfileDrawerItem)
     }
-
-    private fun initLoader(){
-        DrawerImageLoader
-    }
-
 }

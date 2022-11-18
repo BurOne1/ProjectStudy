@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_200">#373A54</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#EBE9F0</color>
     <color name="teal_200">#DDFFB5</color>
@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="whiteDark">#A8A6A6</color>
+    <color name="colorPrimaryDark">#373A54</color>
 
     <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
     <!-- MaterialDrawer DEFAULT colors -->
@@ -24,5 +25,21 @@
     <color name="material_drawer_selected_text">#2196F3</color>
     <color name="material_drawer_header_selection_text">@color/white</color>
     <color name="material_drawer_header_selection_subtext">@color/whiteDark</color>
+
+    <!-- coffee colors -->
+    <color name="brown_50">#EFEBE9</color>
+    <color name="brown_100">#D7CCC8</color>
+    <color name="brown_200">#BCAAA4</color>
+    <color name="brown_300">#A1887F</color>
+    <color name="brown_400">#8D6E63</color>
+    <color name="brown_500">#795548</color>
+    <color name="brown_600">#6D4C41</color>
+    <color name="brown_700">#5D4037</color>
+    <color name="brown_800">#4E342E</color>
+
+    <!-- My colors -->
+    <color name="orange_a100">#FFD180</color>
+    <color name="ne_znayu">#2C2E43</color>
+    <color name="ne_znayu1">#232434</color>
 
 </resources>

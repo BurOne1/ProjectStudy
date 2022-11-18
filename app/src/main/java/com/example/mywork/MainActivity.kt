@@ -1,19 +1,14 @@
 package com.example.mywork
 
 
-import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import com.example.mywork.activities.RegisterActivity
 import com.example.mywork.databinding.ActivityMainBinding
-import com.example.mywork.ui.fragments.ChatsFragment
+import com.example.mywork.ui.fragments.MainFragment
+import com.example.mywork.ui.fragments.register.EnterPhoneNumberFragment
 import com.example.mywork.ui.objects.AppDrawer
 import com.example.mywork.utilits.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,12 +41,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initFunc() {
+        /* Функция инициализирует работу приложения */
+        setSupportActionBar(toolbar)
         if(AUTH.currentUser!=null){
-            setSupportActionBar(toolbar)
             appDrawer.create()
-            replaceFragment(ChatsFragment(),false)
+            replaceFragment(MainFragment(),false)
         } else {
-            replaceActivity(RegisterActivity())
+            //false означает что мы не добавляем в стек фрашментов из которых можно вернуться назад
+            replaceFragment(EnterPhoneNumberFragment(),false)
 
         }
     }
@@ -74,17 +71,6 @@ class MainActivity : AppCompatActivity() {
         AppStates.updateState(AppStates.OFFLINE)
     }
 
-    //запрос на считывание контактов
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        if (ContextCompat.checkSelfPermission(APP_ACTIVITY, READ_CONTACTS)==PackageManager.PERMISSION_GRANTED){
-//            initContacts()
-//        }
-//    }
 
 
 

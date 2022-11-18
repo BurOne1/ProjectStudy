@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.EnterCodeFragment"
+    tools:context=".ui.fragments.register.EnterCodeFragment"
     android:orientation="vertical">
 
     <ImageView
@@ -59,13 +59,13 @@
                 android:layout_marginTop="@dimen/vertical_margin"
                 android:autofillHints="phone"
                 android:gravity="center"
-                android:hint="- - - - - -"
+                android:hint=" - - - - - - "
                 android:inputType="phone"
                 android:maxLength="6"
                 android:maxLines="1"
                 android:padding="@dimen/appPadding"
                 android:textColor="@color/black"
-                android:textSize="30sp">
+                android:textSize="26sp">
 
             </EditText>
         </LinearLayout>

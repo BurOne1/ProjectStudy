@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mywork.R
 import com.example.mywork.models.CommonModel
+import com.example.mywork.ui.fragments.single_chat.SingleChatFragment
 import com.example.mywork.utilits.*
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -47,7 +48,9 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
                 position: Int,
                 model: CommonModel
             ) {
-                holder.name.text = model.fullname
+                if(model.fullname.isEmpty()){
+                    holder.name.text = "no name"
+                }else holder.name.text = model.fullname
                 holder.status.text = model.state
                 holder.itemView.setOnClickListener{ replaceFragment(SingleChatFragment(model)) }
             }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.mywork.MainActivity
 import com.example.mywork.R
+import com.example.mywork.utilits.APP_ACTIVITY
 
 open class BaseFragment(val layout:Int) : Fragment(layout) {
 
@@ -14,12 +15,9 @@ open class BaseFragment(val layout:Int) : Fragment(layout) {
 
     override fun onStart() {
         super.onStart()
-        (activity as MainActivity).appDrawer.disableDrawer()
+        APP_ACTIVITY.appDrawer.disableDrawer()
     }
 
-    override fun onStop() {
-        super.onStop()
-        (activity as MainActivity).appDrawer.enableDrawer()
-    }
+
 
 }
